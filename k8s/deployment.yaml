@@ -18,6 +18,12 @@ spec:
           image: 864884464113.dkr.ecr.ap-south-1.amazonaws.com/hello-app:latest
           ports:
             - containerPort: 3000
+          env:
+            # Inject the pod name into the container
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
 ---
 apiVersion: v1
 kind: Service
